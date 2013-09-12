@@ -6,16 +6,13 @@ with open('data.csv', 'rb') as csvfile:
 
     # MAC,SSID,AuthMode,FirstSeen,Channel,RSSI,CurrentLatitude,CurrentLongitude,AltitudeMeters,AccuracyMeters,Type
 
-    # Get one reading for each Mac address
+    # Get the strongest reading for each Mac address
     macs = {}
     for line in reader:
         mac = line[0]
         if mac in macs:
-
-            # check if the rssi is larger
             if macs[mac][5] < line[5]:
                 macs[mac] = line
-
         else:
             macs[mac] = line
 
